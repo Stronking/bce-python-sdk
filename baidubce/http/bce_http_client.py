@@ -15,7 +15,7 @@ This module provide http request function for bce services.
 """
 
 import logging
-import httplib
+from http import client as httplib
 import sys
 import time
 import traceback
@@ -42,6 +42,7 @@ def _get_connection(protocol, host, port, connection_timeout_in_millis):
     :type connection_timeout_in_millis int
     """
     if protocol.name == baidubce.protocol.HTTP.name:
+
         return httplib.HTTPConnection(
             host=host, port=port, timeout=connection_timeout_in_millis / 1000)
     elif protocol.name == baidubce.protocol.HTTPS.name:
